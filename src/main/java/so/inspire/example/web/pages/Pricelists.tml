@@ -1,0 +1,118 @@
+<div t:type="example/layout" t:title="${message:page-title}"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<div class="white-panel" t:type="zone" t:id="mainZone" t:update="show"
+		id="mainZone">
+
+		<div class="row-fluid">
+			<blockquote>
+				<h3 class="help-inline">${message:pricelist-title}</h3>
+				<div class="split-line-bottom" />
+			</blockquote>
+		</div>
+
+		<form class="form-horizontal" t:type="form" t:id="form" t:zone="^">
+			<t:hidden value="model.object.id" />
+			<t:hidden value="model.object.version" />
+
+			<fieldset>
+				<div t:type="insp/alerts" />
+
+				<div class="control-group">
+					<label class="control-label" t:type="label" t:for="product" />
+					<div class="controls">
+						<select t:id="product" t:type="select" t:model="productMap"
+							t:value="model.object.productCode" required="true" />
+						<span class="help-inline">${message:required-help}</span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" t:type="label" t:for="freight" />
+					<div class="controls">
+						<select t:id="freight" t:type="select" t:model="freightArray"
+							t:value="model.object.name" required="true" />
+						<span class="help-inline">${message:required-help}</span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" t:type="label" t:for="price" />
+					<div class="controls">
+						<input t:id="price" t:type="textfield" t:value="model.object.price"
+							required="true" role="money" />
+						<span class="help-inline">${message:price-help}</span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" t:type="label" t:for="currency" />
+					<div class="controls">
+						<select t:id="currency" t:type="select" t:model="currencyMap"
+							t:value="model.object.currency" required="true" />
+						<span class="help-inline">${message:required-help}</span>
+					</div>
+				</div>
+
+
+
+				<div class="control-group">
+					<div class="controls">
+						<button class="btn btn-success" type="submit">${message:save}</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
+
+
+		<div class="row-fluid">
+			<blockquote>
+				<h3 class="help-inline">${message:pricelist.saved-title}</h3>
+				<div class="split-line-bottom" />
+			</blockquote>
+		</div>
+
+		<div class="row-fluid">
+			<div class="span11 ">
+				<table class="table table-hover offset20">
+					<thead>
+						<tr>
+							<th>${message:name-label}</th>
+							<th>${message:product-label}</th>
+							<th>${message:price-label}</th>
+							<th>${message:currency-label}</th>
+							<th>${message:opera-label}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr t:type="loop" t:source="model.list" t:value="model.current"
+							class="${model.currentCss}">
+							<td>${model.current.name}</td>
+							<td>${model.current.productName}</td>
+							<td>${decimalf:model.current.price,2}</td>
+							<td>${model.current.currency}</td>
+							<td>
+								<a t:type="eventlink" t:event="update" t:context="model.current.id"
+									t:zone="^">
+									${message:modify}
+								</a>
+								|
+								<a t:type="eventlink" t:event="delete"
+									t:context="[model.current.id, model.current.version]" t:zone="^">
+									<span data-message="${format:delete-format, model.current.name}"
+										role="confirm">
+										${message:delete}
+									</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+
+</div>

@@ -1,0 +1,27 @@
+/**
+*
+*/
+ .t-tree-container .selected {
+    color:red;
+}
+.t-tree-container ul.dropdown-menu {
+    background-image:none;
+    min-width:20px;
+}
+.t-tree-container .dropdown-menu li {
+    background-image:none;
+    padding: 3px 0;
+}
+.t-tree-container .btn, .t-tree-container .btn:hover, .t-tree-container .btn:focus, .t-tree-container .btn:active {
+    /*padding: 0 3px;*/
+    background-color: transparent;
+    border: 0;
+}
+.t-tree-container .dropdown-toggle:hover .caret, .t-tree-container .dropdown-toggle:focus .caret {
+    border-top-color: #005580;
+    border-bottom-color: #005580;
+}
+.t-tree-container .btn-group.open .btn.dropdown-toggle {
+    background-color: transparent;
+    box-shadow:none;
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2014, Inspireso and/or its affiliates. All rights reserved. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:property-placeholder
+		ignore-resource-not-found="true" system-properties-mode="OVERRIDE"
+		ignore-unresolvable="true" properties-ref="approperties"
+		file-encoding="UTF-8" />
+
+	<bean id="approperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath*:/application.properties</value>
+				<value>classpath*:/application.local.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+
+	<!-- <context:property-placeholder ignore-unresolvable="true" local-override="true" 
+		location="classpath*:/application.properties,classpath*:/application.local.properties" 
+		/> -->
+
+</beans>

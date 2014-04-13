@@ -1,0 +1,125 @@
+<div t:type="example/layout" t:title="${message:page-title}"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+
+	<div class="white-panel" t:type="zone" t:id="mainZone" t:update="show"
+		id="mainZone">
+
+		<div class="row-fluid">
+			<blockquote>
+				<h3 class="help-inline">${message:product-title}</h3>
+				<div class="split-line-bottom" />
+			</blockquote>
+		</div>
+
+		<form class="form-horizontal" t:type="form" t:id="form" t:zone="^">
+			<t:hidden value="model.object.id" />
+			<t:hidden value="model.object.version" />
+
+			<fieldset>
+				<div t:type="insp/alerts" />
+
+				<div class="control-group">
+					<label class="control-label" t:type="label" t:for="code" />
+					<div class="controls">
+						<input t:id="code" t:type="textfield" t:value="model.object.code"
+							required="true" />
+						<span class="help-inline">${message:required-help}</span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" t:type="label" t:for="name" />
+					<div class="controls">
+						<input t:id="name" t:type="textfield" t:value="model.object.name"
+							required="true" />
+						<span class="help-inline">${message:required-help}</span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" t:type="label" t:for="fullname" />
+					<div class="controls">
+						<input class="input-xxlarge" t:id="fullname" t:type="textfield"
+							t:value="model.object.fullName" required="true" />
+						<span class="help-inline">${message:required-help}</span>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox">
+							<input t:type="checkbox" t:value="model.object.support" />
+							${message:support-label}
+						</label>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<button class="btn btn-success" type="submit">${message:save}</button>
+					</div>
+				</div>
+
+
+			</fieldset>
+		</form>
+
+
+		<div class="row-fluid">
+			<blockquote>
+				<h3 class="help-inline">${message:product.saved-title}</h3>
+				<div class="split-line-bottom" />
+			</blockquote>
+		</div>
+
+		<div class="row-fluid">
+			<div class="span11 ">
+				<table class="table table-hover offset20">
+					<thead>
+						<tr>
+							<th>${message:code-label}</th>
+							<th>${message:name-label}</th>
+							<th>${message:fullname-label}</th>
+							<th>${message:support-label}</th>
+							<th>${message:opera-label}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr t:type="loop" t:source="model.list" t:value="model.current"
+							class="${model.currentCss}">
+							<td>${model.current.code}</td>
+							<td>${model.current.name}</td>
+							<td>${model.current.fullName}</td>
+							<td>
+								<t:if test="model.current.support">
+									<i class="icon-ok" />
+								</t:if>
+
+							</td>
+							<td>
+								<a t:type="eventlink" t:event="update" t:context="model.current.id"
+									t:zone="^">
+									${message:modify}
+								</a>
+								<t:if test="currentNotSupport">
+									|
+									<a t:type="eventlink" t:event="delete" t:context="model.current.id"
+										t:zone="^">
+										<span data-message="${format:delete-format, model.current.name}"
+											role="confirm">
+											${message:delete}
+										</span>
+									</a>
+								</t:if>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+
+</div>

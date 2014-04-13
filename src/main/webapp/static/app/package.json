@@ -1,0 +1,15 @@
+{
+    "family":"all",
+    "name": "app",
+    "version": "1.0.1",
+    "spm": {
+        "source": "js",
+        "alias": {
+            "jquery": "../../jquery/jquery-1.7.2.min.js",
+            "bootstrap": "../../bootstrap/js/bootstrap.min.js"
+        },
+        "output": [
+            "app.js"
+        ]
+    }
+}

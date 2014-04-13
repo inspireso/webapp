@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2014, Inspireso and/or its affiliates. All rights reserved. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- <jdbc:embedded-database id="dataSource" type="HSQL" /> -->
+
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="${jdbc.driver}" /> <property name="url" 
+		value="${jdbc.url}" /> <property name="username" value="${jdbc.username}" 
+		/> <property name="password" value="${jdbc.password}" /> </bean> -->
+
+	<!-- 数据源配置JNDI -->
+	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" 
+		lazy-init="default" autowire="default" dependency-check="default"> <property 
+		name="jndiName"> <value>java:comp/env/JDBC/BLANK</value> </property> </bean> -->
+
+	<!-- 数据源配置，DBCP连接池 -->
+	<!-- <bean id="dataSource" class="com.smt.core.util.XBasicDataSource" destroy-method="close"> 
+		<property name="driverClassName" value="${jdbc.driver}" /> <property name="url" 
+		value="${jdbc.url}" /> <property name="username" value="${jdbc.username}" 
+		/> <property name="password" value="${jdbc.password}" /> <property name="maxActive" 
+		value="${pool.maxSize}" /> <property name="maxIdle" value="${pool.minSize}" 
+		/> <property name="initialSize" value="${pool.minSize}" /> <property name="defaultAutoCommit" 
+		value="false" /> <property name="validationQuery" value="select sysdate from 
+		dual" /> <property name="testOnBorrow" value="true" /> <property name="testOnReturn" 
+		value="true" /> <property name="testWhileIdle" value="true" /> <property 
+		name="timeBetweenEvictionRunsMillis" value="3600000" /> <property name="minEvictableIdleTimeMillis" 
+		value="3600000" /> </bean> -->
+
+	<!-- BoneCP configuration -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+
+		<property name="idleConnectionTestPeriodInMinutes" value="1" />
+		<property name="idleMaxAgeInMinutes" value="1" />
+		<property name="maxConnectionsPerPartition" value="${pool.maxSize}" />
+		<property name="minConnectionsPerPartition" value="${pool.minSize}" />
+		<property name="partitionCount" value="3" />
+		<property name="acquireIncrement" value="10" />
+		<property name="statementsCacheSize" value="50" />
+		<property name="releaseHelperThreads" value="3" />
+
+		<property name="connectionTestStatement" value="select sysdate from dual" />
+	</bean>
+</beans>

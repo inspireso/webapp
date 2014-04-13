@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="Default" transaction-type="RESOURCE_LOCAL">
+		<class>com.inspireso.framework.organization.domain.Group</class>
+		<class>com.inspireso.framework.organization.domain.User</class>
+		<class>com.inspireso.framework.organization.domain.UserDefaults</class>
+		<class>com.inspireso.framework.security.domain.Account</class>
+		<class>com.inspireso.framework.security.domain.Function</class>
+		<class>com.inspireso.framework.resource.domain.Filter</class>
+		<class>com.inspireso.framework.resource.domain.Number</class>
+		<class>so.inspire.example.domain.Product</class>
+		<class>so.inspire.example.domain.Pricelist</class>
+		<class>so.inspire.pay.domain.CallbackLog</class>
+		<class>so.inspire.pay.domain.PayAccount</class>
+		<class>so.inspire.pay.domain.ReceiveLog</class>
+		<class>so.inspire.pay.domain.Transaction</class>
+
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.dialect" value="${hibernate.dialect}" />
+			<property name="hibernate.connection.driver_class" value="${jdbc.driver}" />
+			<property name="hibernate.connection.username" value="${jdbc.username}" />
+			<property name="hibernate.connection.password" value="${jdbc.password}" />
+			<property name="hibernate.connection.url" value="${jdbc.url}" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.max_fetch_depth" value="3" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy" />
+		</properties>
+	</persistence-unit>
+</persistence>

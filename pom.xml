@@ -1,0 +1,407 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.inspireso.modules</groupId>
+		<artifactId>inspireso-modules</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>inspireso-webapp</artifactId>
+	<packaging>war</packaging>
+
+	<properties>
+		<base-package.service>com.inspireso.**.service, so.inspire.**.service</base-package.service>
+		<base-package.repository>com.inspireso.**.repository,so.inspire.**.repository</base-package.repository>
+		<base-package.webapi>com.inspireso.**.web.api,so.inspire.**.web.api</base-package.webapi>
+
+		<jpa.domain>com.inspireso.**.domain,so.inspire.**.domain</jpa.domain>
+		<jpa.generateDdl>false</jpa.generateDdl>
+		<jpa.defaults.auditor>system</jpa.defaults.auditor>
+		<hibernate.show_sql> false</hibernate.show_sql>
+		<hibernate.format_sql>true</hibernate.format_sql>
+		<hibernate.hbm2ddl>validate</hibernate.hbm2ddl>
+
+		<!-- connection pool settings -->
+		<pool.minSize>1</pool.minSize>
+		<pool.maxSize>3</pool.maxSize>
+
+		<!-- log4j settings -->
+		<log4j.rootCategory>INFO, stdout</log4j.rootCategory>
+		<log4j.hibernate>INFO</log4j.hibernate>
+
+		<webapp.static>${basedir}/src/main/webapp/static/</webapp.static>
+		<project.build.target>${project.build.directory}\${project.build.finalName}</project.build.target>
+	</properties>
+
+	<profiles>
+
+		<profile>
+			<!-- for h2: mvn tomcat7:run -Ph2 -->
+			<id>h2</id>
+			<properties>
+				<!-- DB2, DERBY, H2, HSQL, INFORMIX, MYSQL, ORACLE, POSTGRESQL, SQL_SERVER, 
+					SYBASE -->
+				<jpa.database>H2</jpa.database>
+				<jdbc.driver>org.h2.Driver</jdbc.driver>
+				<jdbc.url>jdbc:h2:file:~/.h2/examples;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1</jdbc.url>
+				<jdbc.username>sa</jdbc.username>
+				<jdbc.password></jdbc.password>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+					<version>1.3.171</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+		</profile>
+
+		<profile>
+			<!-- for oracle: mvn tomcat7:run -Poracle -->
+			<id>oracle</id>
+			<properties>
+				<jpa.database>ORACLE</jpa.database>
+				<jdbc.driver>oracle.jdbc.OracleDriver</jdbc.driver>
+				<jdbc.url>jdbc:oracle:thin:@localhost:1521/ORCL</jdbc.url>
+				<jdbc.username>inspireso</jdbc.username>
+				<jdbc.password>inspireso</jdbc.password>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>com.oracle</groupId>
+					<artifactId>ojdbc14</artifactId>
+					<version>10.2.0.5</version>
+					<scope>runtime</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+
+	</profiles>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>*.properties</include>
+					<include>conf/*.*</include>
+					<include>conf/**/*.*</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>*.tml</include>
+					<include>**/**.tml</include>
+					<include>*.properties</include>
+					<include>**/**.properties</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>hibernate3-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<components>
+						<component>
+							<name>hbm2ddl</name>
+							<outputDirectory>src/main/resources/db/${jpa.database}</outputDirectory>
+							<implementation>jpaconfiguration</implementation>
+						</component>
+
+						<component>
+							<name>hbm2java</name>
+							<outputDirectory>src/main/java/domain</outputDirectory>
+							<implementation>jpaconfiguration</implementation>
+						</component>
+					</components>
+					<componentProperties>
+						<persistenceunit>Default</persistenceunit>
+						<outputfilename>schema.sql</outputfilename>
+						<drop>false</drop>
+						<create>true</create>
+						<export>false</export>
+						<format>true</format>
+					</componentProperties>
+				</configuration>
+
+				<dependencies>
+					<dependency>
+						<groupId>com.inspireso.framework</groupId>
+						<artifactId>inspireso-tapestry</artifactId>
+						<version>${inspireso.version}</version>
+					</dependency>
+
+					<dependency>
+						<artifactId>inspireso-payment</artifactId>
+						<groupId>${project.groupId}</groupId>
+						<version>${project.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>com.googlecode.flyway</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<driver>${jdbc.driver}</driver>
+					<url>${jdbc.url}</url>
+					<user>${jdbc.username}</user>
+					<password>${jdbc.password}</password>
+					<encoding>UTF-8</encoding>
+					<validationMode>ALL</validationMode>
+					<validationErrorMode>FAIL</validationErrorMode>
+					<locations>
+						<location>db/${jpa.database}/migration</location>
+					</locations>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>1.3.171</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<update>true</update>
+					<charset>UTF-8</charset>
+					<systemProperties>
+						<tapestry.execution-mode>development</tapestry.execution-mode>
+					</systemProperties>
+					<path>/webapp</path>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-war</id>
+						<phase>package</phase>
+						<goals>
+							<goal>war</goal>
+						</goals>
+						<configuration>
+							<packagingIncludes>
+								META-INF/*/,
+								static/${project.version}/*/,
+								static/jquery/*.min.js,
+								static/jquery-ui/css/images/*/,
+								static/jquery-ui/css/*.min.css,
+								static/html5/*.min.js,
+								static/ie6/*.min.js,
+								WEB-INF/*/,
+								favicon.ico
+							</packagingIncludes>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>yuicompressor-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<executions>
+					<execution>
+						<id>compress-static-resource</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>compress</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<encoding>UTF-8</encoding>
+					<jswarn>false</jswarn>
+					<force>true</force>
+					<linebreakpos>-1</linebreakpos>
+					<gzip>false</gzip>
+					<preProcessAggregates>false</preProcessAggregates>
+					<suffix>.min</suffix>
+					<sourceDirectory>${webapp.static}</sourceDirectory>
+					<includes>
+						<include>app/js/*.js</include>
+						<include>app/css/*.css</include>
+					</includes>
+					<excludes>
+						<exclude>ckeditor/**/*.*</exclude>
+						<exclude>sea/**/*.*</exclude>
+						<exclude>**/*.min.js</exclude>
+						<exclude>**/*.min.css</exclude>
+					</excludes>
+					<outputDirectory>${project.build.target}/static/${project.version}/</outputDirectory>
+					<aggregations>
+						<aggregation>
+							<insertNewLine>true</insertNewLine>
+							<inputDir>${project.build.target}/static/${project.version}/</inputDir>
+							<output>${project.build.target}/static/${project.version}/all/js/main.min.js</output>
+							<includes>
+								<include>${webapp.static}/sea/sea.min.js</include>
+								<include>app/js/config.min.js</include>
+								<include>${webapp.static}/bootstrap/js/bootstrap.min.js</include>
+								<include>app/js/app.extend.min.js</include>
+								<include>app/js/app.org.min.js</include>
+								<include>${webapp.static}/jquery/jquery.printarea.js</include>
+								<include>app/js/app.print.min.js</include>
+							</includes>
+						</aggregation>
+
+						<aggregation>
+							<insertNewLine>true</insertNewLine>
+							<inputDir>${project.build.target}/static/${project.version}/</inputDir>
+							<output>${project.build.target}/static/${project.version}/all/css/all.in.one.min.css</output>
+							<includes>
+								<include>${webapp.static}/bootstrap/css/bootstrap.min.css</include>
+								<include>${webapp.static}/icons/css/font-awesome.min.css</include>
+								<include>app/css/app.min.css</include>
+								<include>app/css/app.org.min.css</include>
+								<include>${webapp.static}/bootstrap/css/bootstrap-responsive.min.css</include>
+								<include>app/css/app.responsive.min.css</include>
+							</includes>
+
+						</aggregation>
+
+					</aggregations>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-static-resource</id>
+						<phase>prepare-package</phase>
+						<configuration>
+							<tasks>
+								<copy
+									todir="${project.build.target}/static/${project.version}/all/images/"
+									failonerror="false">
+									<fileset dir="${webapp.static}/app/images">
+										<include name="*.*" />
+										<include name="**/*.*" />
+									</fileset>
+								</copy>
+								<copy
+									todir="${project.build.target}/static/${project.version}/all/font/"
+									failonerror="false">
+									<fileset dir="${webapp.static}/icons/font/">
+										<include name="*.*" />
+									</fileset>
+								</copy>
+								<copy
+									todir="${project.build.target}/static/${project.version}/all/app/1.0.1/"
+									failonerror="false">
+									<fileset dir="${webapp.static}/app/dist/">
+										<include name="app.js" />
+									</fileset>
+								</copy>
+								<copy
+									todir="${project.build.target}/static/${project.version}/app/images/"
+									failonerror="false">
+									<fileset dir="${webapp.static}/app/images">
+										<include name="*.*" />
+										<include name="**/*.*" />
+									</fileset>
+								</copy>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.tapestry</groupId>
+			<artifactId>tapestry-spring</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.inspireso.framework</groupId>
+			<artifactId>inspireso-tapestry</artifactId>
+		</dependency>
+
+		<dependency>
+			<artifactId>inspireso-payment</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- <dependency> <artifactId>inspireso-partner-web</artifactId> <groupId>${project.groupId}</groupId> 
+			<version>${project.version}</version> </dependency> -->
+
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<scope>runtime</scope>
+			<version>0.7.1.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>inspireso-all</id>
+			<name>inspireso Repository</name>
+			<url>http://inspire.so:8081/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>got5</id>
+			<name>got5 Repository</name>
+			<url>http://nexus.devlab722.net/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>sonatype</id>
+			<name>Sonatype Repository</name>
+			<url>http://repository.sonatype.org/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+</project>

@@ -1,0 +1,27 @@
+<div t:type="insp/layout" t:title="${title}"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<p:styles>
+		<t:delegate to="styles" />
+	</p:styles>
+
+	<p:navbar>
+		<div t:type="insp/navbar" />
+	</p:navbar>
+
+
+	<div class="row-fluid">
+		<div class="span2">
+			<div class="row-fluid">
+				<div class="insp-sidebar" data-spy="affix">
+					<div t:type="insp/sidebar" t:prefix="setting" />
+				</div>
+			</div>
+		</div>
+		<div class="span10 ">
+			<t:body />
+		</div>
+
+	</div>
+
+</div>
