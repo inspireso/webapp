@@ -8,7 +8,7 @@
         name varchar(255),
         code varchar(255),
         current_value bigint not null,
-        increment_by bigint not null,
+        increment_by int not null,
         max_value bigint not null,
         min_value bigint not null,
         primary key (id)

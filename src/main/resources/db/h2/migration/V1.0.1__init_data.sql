@@ -35,7 +35,7 @@
     values ('fun002','管理员.授权','system',CURRENT_DATE(),1,'sec/functiongroupmanager',12,'内部用户使用，用于管理各种用户组可操作的功能',3,'resource');
 
     Insert into AUT_FUNCTION (ID,NAME,CREATED_BY,CREATED_DATE,VERSION,URL,ORDER_BY,DESCRIPTION,TYPE,GROUP_NAME) 
-    values ('fun003','管理员.员工','system',CURRENT_DATE(),1,'sec/staffmanager',3,'管理当前系统的内部账户',3,'resource');
+    values ('fun003','管理员.员工','system',CURRENT_DATE(),1,'sec/staffmanager',13,'管理当前系统的内部账户',3,'resource');
 
      Insert into AUT_FUNCTION (ID,NAME,CREATED_BY,CREATED_DATE,VERSION,URL,ORDER_BY,DESCRIPTION,TYPE,GROUP_NAME) 
     values ('fun004','员工信息.简介','system',CURRENT_DATE(),1,'my/about',20,'查看编辑员工自己的基本信息',3,'staff.profile');
