@@ -32,6 +32,7 @@
 
 		<webapp.static>${basedir}/src/main/webapp/static/</webapp.static>
 		<project.build.target>${project.build.directory}\${project.build.finalName}</project.build.target>
+
 	</properties>
 
 	<profiles>
@@ -179,13 +180,7 @@
 						<location>db/${jpa.database}/migration</location>
 					</locations>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.h2database</groupId>
-						<artifactId>h2</artifactId>
-						<version>1.3.171</version>
-					</dependency>
-				</dependencies>
+
 			</plugin>
 
 			<plugin>
@@ -268,12 +263,12 @@
 							<output>${project.build.target}/static/${project.version}/all/js/main.min.js</output>
 							<includes>
 								<include>${webapp.static}/sea/sea.min.js</include>
+								<include>${webapp.static}/jquery/jquery.hotkeys.min.js</include>
 								<include>app/js/config.min.js</include>
 								<include>${webapp.static}/bootstrap/js/bootstrap.min.js</include>
+								<include>${webapp.static}/messenger/js/messenger.min.js</include>
+								<include>${webapp.static}/messenger/js/messenger-theme-future.min.js</include>
 								<include>app/js/app.extend.min.js</include>
-								<include>app/js/app.org.min.js</include>
-								<include>${webapp.static}/jquery/jquery.printarea.js</include>
-								<include>app/js/app.print.min.js</include>
 							</includes>
 						</aggregation>
 
@@ -326,14 +321,17 @@
 										<include name="app.js" />
 									</fileset>
 								</copy>
-								<copy
-									todir="${project.build.target}/static/${project.version}/app/images/"
+								<copy todir="${project.build.target}/static/${project.version}/"
 									failonerror="false">
-									<fileset dir="${webapp.static}/app/images">
-										<include name="*.*" />
-										<include name="**/*.*" />
+									<fileset dir="${webapp.static}/">
+										<include name="**/*.png" />
+										<include name="**/*.jpg" />
+										<include name="**/*.gif" />
+										<include name="**/*.min.js" />
+										<include name="**/*.min.css" />
 									</fileset>
 								</copy>
+
 							</tasks>
 						</configuration>
 						<goals>
@@ -378,6 +376,23 @@
 					<groupId>com.google.guava</groupId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-spring</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-freemarker</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-ftp</artifactId>
+			<version>2.13.0</version>
 		</dependency>
 
 	</dependencies>
