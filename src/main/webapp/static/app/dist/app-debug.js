@@ -7,7 +7,7 @@
  * Licensed under the Apache 2.0 License.
  *
  */
-define("all/app/1.0.1/app-debug", [ "./controls/__init__-debug", "./controls/submit-debug", "./controls/checkbox-debug", "./controls/confirm-debug", "./controls/jump-debug", "./controls/link-debug", "./controls/messenger-debug", "./controls/money-debug", "./controls/required-debug", "./controls/number-debug", "./controls/pagination-debug", "./controls/roles-debug", "./controls/trim-debug", "./controls/validity-debug", "./controls/dialog-debug", "./controls/async-debug" ], function(require, exports, module) {
+define("all/app/1.0.1/app-debug", [ "./controls/__init__-debug", "./controls/submit-debug", "./controls/checkbox-debug", "./controls/confirm-debug", "./controls/jump-debug", "./controls/link-debug", "./controls/messenger-debug", "./controls/money-debug", "./controls/number-debug", "./controls/pagination-debug", "./controls/required-debug", "./controls/roles-debug", "./controls/trim-debug", "./controls/validity-debug", "./controls/dialog-debug", "./controls/async-debug" ], function(require, exports, module) {
     var $ = window.jQuery;
     var util = require("./controls/__init__-debug");
     var jsArray = [];
@@ -42,7 +42,7 @@ define("all/app/1.0.1/app-debug", [ "./controls/__init__-debug", "./controls/sub
  * Licensed under the Apache 2.0 License.
  *
  */
-define("all/app/1.0.1/controls/__init__-debug", [ "all/app/1.0.1/controls/submit-debug", "all/app/1.0.1/controls/checkbox-debug", "all/app/1.0.1/controls/confirm-debug", "all/app/1.0.1/controls/jump-debug", "all/app/1.0.1/controls/link-debug", "all/app/1.0.1/controls/messenger-debug", "all/app/1.0.1/controls/money-debug", "all/app/1.0.1/controls/required-debug", "all/app/1.0.1/controls/number-debug", "all/app/1.0.1/controls/pagination-debug", "all/app/1.0.1/controls/roles-debug", "all/app/1.0.1/controls/trim-debug", "all/app/1.0.1/controls/validity-debug", "all/app/1.0.1/controls/dialog-debug", "all/app/1.0.1/controls/async-debug" ], function(require, exports, module) {
+define("all/app/1.0.1/controls/__init__-debug", [ "all/app/1.0.1/controls/submit-debug", "all/app/1.0.1/controls/checkbox-debug", "all/app/1.0.1/controls/confirm-debug", "all/app/1.0.1/controls/jump-debug", "all/app/1.0.1/controls/link-debug", "all/app/1.0.1/controls/messenger-debug", "all/app/1.0.1/controls/money-debug", "all/app/1.0.1/controls/number-debug", "all/app/1.0.1/controls/pagination-debug", "all/app/1.0.1/controls/required-debug", "all/app/1.0.1/controls/roles-debug", "all/app/1.0.1/controls/trim-debug", "all/app/1.0.1/controls/validity-debug", "all/app/1.0.1/controls/dialog-debug", "all/app/1.0.1/controls/async-debug" ], function(require, exports, module) {
     function applyAll() {
         require("all/app/1.0.1/controls/submit-debug");
         require("all/app/1.0.1/controls/checkbox-debug");
@@ -322,10 +322,10 @@ define("all/app/1.0.1/controls/messenger-debug", [], function(require, exports, 
  * Licensed under the Apache 2.0 License.
  *
  */
-define("all/app/1.0.1/controls/money-debug", [ "all/app/1.0.1/controls/required-debug" ], function(require, exports, module) {
+define("all/app/1.0.1/controls/money-debug", [ "all/app/1.0.1/controls/number-debug" ], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
-    var number = require("all/app/1.0.1/controls/required-debug");
+    var number = require("all/app/1.0.1/controls/number-debug");
     function onblur() {
         this.value = format(this.value);
     }
@@ -375,55 +375,6 @@ define("all/app/1.0.1/controls/money-debug", [ "all/app/1.0.1/controls/required-
     }
     function applyAll() {
         init("input[role=money]:visible");
-    }
-    applyAll();
-    module.exports = {
-        init: init,
-        applyAll: applyAll
-    };
-});
-
-/*!
- * required.js
- *
- * https://github.com/inspireso
- *
- * Copyright 2014 Inspireso and/or its affiliates.
- * Licensed under the Apache 2.0 License.
- *
- */
-define("all/app/1.0.1/controls/required-debug", [], function(require, exports, module) {
-    var $ = window.jQuery;
-    var $doc = $(document);
-    var tipPlacement = "right";
-    function onblur(e) {
-        var $this = $(this);
-        if ($this.val().length < 1) {
-            $this.tooltip("show");
-        } else {
-            $this.tooltip("hide");
-        }
-    }
-    function init(selector) {
-        $(selector).each(function() {
-            var $this = $(this);
-            var help = $this.nextAll().filter("span.help-inline");
-            var title = $this.data("title") || help.text() || "此字段必须填写";
-            var options = {
-                placement: tipPlacement,
-                trigger: "manual",
-                title: title
-            };
-            $this.tooltip(options);
-        });
-    }
-    function applyAll() {
-        var selector = "input[required]:not(input[role]):visible";
-        init(selector);
-        $doc.bind("ajaxSuccess", function(e) {
-            init(selector);
-        });
-        $doc.on("blur", selector, onblur);
     }
     applyAll();
     module.exports = {
@@ -526,6 +477,55 @@ define("all/app/1.0.1/controls/pagination-debug", [], function(require, exports,
         $doc.bind("ajaxSuccess", function(e) {
             init("#pagination");
         });
+    }
+    applyAll();
+    module.exports = {
+        init: init,
+        applyAll: applyAll
+    };
+});
+
+/*!
+ * required.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
+define("all/app/1.0.1/controls/required-debug", [], function(require, exports, module) {
+    var $ = window.jQuery;
+    var $doc = $(document);
+    var tipPlacement = "right";
+    function onblur(e) {
+        var $this = $(this);
+        if ($this.val().length < 1) {
+            $this.tooltip("show");
+        } else {
+            $this.tooltip("hide");
+        }
+    }
+    function init(selector) {
+        $(selector).each(function() {
+            var $this = $(this);
+            var help = $this.nextAll().filter("span.help-inline");
+            var title = $this.data("title") || help.text() || "此字段必须填写";
+            var options = {
+                placement: tipPlacement,
+                trigger: "manual",
+                title: title
+            };
+            $this.tooltip(options);
+        });
+    }
+    function applyAll() {
+        var selector = "input[required]:not(input[role]):visible";
+        init(selector);
+        $doc.bind("ajaxSuccess", function(e) {
+            init(selector);
+        });
+        $doc.on("blur", selector, onblur);
     }
     applyAll();
     module.exports = {
@@ -767,7 +767,12 @@ define("all/app/1.0.1/controls/async-debug", [], function(require, exports, modu
         if (els.length > 0) {
             var requires = [];
             for (var i = 0; i < els.length; i++) {
-                requires[i] = els[i].getAttribute("src");
+                var src = els[i].getAttribute("src");
+                //如果是生产环境，会默认压缩成.min.js|.min.css文件，所以在这边统一替换
+                if (!insp.debug) {
+                    src = src.replace(".js", ".min.js").replace(".css", ".min.css");
+                }
+                requires[i] = src;
             }
             require.async(requires);
         }

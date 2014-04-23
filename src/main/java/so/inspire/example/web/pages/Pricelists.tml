@@ -90,7 +90,7 @@
 							class="${model.currentCss}">
 							<td>${model.current.name}</td>
 							<td>${model.current.productName}</td>
-							<td>${decimalf:model.current.price,2}</td>
+							<td>${decimalf:model.current.price,2,1}</td>
 							<td>${model.current.currency}</td>
 							<td>
 								<a t:type="eventlink" t:event="update" t:context="model.current.id"
