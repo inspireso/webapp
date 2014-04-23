@@ -1,85 +1,17 @@
-@media (max-width: 980px) {
-  /* Unfloat brand */
-  
-  body > .navbar-fixed-top .brand {
-    float: left;
-    margin-left: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .insp-body .insp-sidebar {
-    top: 0;
-    width: 218px;
-    margin-top: 30px;
-    margin-right: 0;
-  }
-}
-/* Tablet to desktop
-------------------------- */
-
-@media (min-width: 768px) and (max-width: 979px) {
-  /* Remove any padding from the body */
-  
-  body {
-    padding-top: 0;
-    margin-top: 0;
-  }
-  .insp-body .insp-sidebar {
-    width: 166px;
-    margin-top: 20px;
-  }
-  .insp-body .insp-sidebar.affix {
-    top: 88px;
-  }
-}
-@media (max-width: 767px) {
-  /* Remove any padding from the body */
-  
-  body {
-    padding-top: 0;
-    margin-top: 0;
-  }
-  .insp-body .insp-sidebar {
-    height: auto;
-    width: auto;
-    margin-bottom: 20px;
-  }
-  .insp-body .insp-sidebar.affix {
-    position: static;
-    width: auto;
-    top: 0;
-  }
-  .insp-body .footer {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .insp-body .footer p {
-    margin-bottom: 9px;
-  }
-}
-@media (max-width: 480px) {
-  #group-edit .form-horizontal .control-label {
-    width: auto;
-  }
-  #group-edit .form-horizontal .controls {
-    margin-left: 0;
-  }
-}
-@media (max-height: 1024px) {
-  .insp-body .scrollable {
-    max-height: 800px;
-  }
-}
-@media (max-height: 768px) {
-  .insp-body .scrollable {
-    max-height: 500px;
-    min-height: 450px;
-  }
-}
-@media (max-height: 600px) {
-  .insp-body .scrollable {
-    max-height: 400px;
-  }
-}
+/*!
+ * app.less
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ *//*!
+ * constants v2.3.2
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */@media (max-width:980px){body>.navbar-fixed-top .brand{float:left;margin-left:0;padding-left:10px;padding-right:10px}.insp-body .insp-sidebar{top:0;width:218px;margin-top:30px;margin-right:0}}@media (min-width:768px) and (max-width:979px){body{padding-top:0;margin-top:0}.insp-body .insp-sidebar{width:166px;margin-top:20px}.insp-body .insp-sidebar.affix{top:88px}}@media (max-width:767px){body{padding-top:0;margin-top:0}.insp-body .insp-sidebar{height:auto;width:auto;margin-bottom:20px}.insp-body .insp-sidebar.affix{position:static;width:auto;top:0}.insp-body .footer{margin-left:-20px;margin-right:-20px;padding-left:20px;padding-right:20px}.insp-body .footer p{margin-bottom:9px}}@media (max-width:480px){#group-edit .form-horizontal .control-label{width:auto}#group-edit .form-horizontal .controls{margin-left:0}}@media (max-height:1024px){.insp-body .scrollable{max-height:800px}}@media (max-height:768px){.insp-body .scrollable{max-height:500px;min-height:450px}}@media (max-height:600px){.insp-body .scrollable{max-height:400px}}/*# sourceMappingURL=app.responsive.css.map */

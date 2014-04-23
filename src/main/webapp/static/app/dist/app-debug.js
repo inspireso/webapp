@@ -1,3 +1,12 @@
+/*!
+ * app.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/app-debug", [ "./controls/__init__-debug", "./controls/submit-debug", "./controls/checkbox-debug", "./controls/confirm-debug", "./controls/jump-debug", "./controls/link-debug", "./controls/messenger-debug", "./controls/money-debug", "./controls/required-debug", "./controls/number-debug", "./controls/pagination-debug", "./controls/roles-debug", "./controls/trim-debug", "./controls/validity-debug", "./controls/dialog-debug", "./controls/async-debug" ], function(require, exports, module) {
     var $ = window.jQuery;
     var util = require("./controls/__init__-debug");
@@ -24,6 +33,15 @@ define("all/app/1.0.1/app-debug", [ "./controls/__init__-debug", "./controls/sub
     module.exports = App;
 });
 
+/*!
+ * __init__.js: import controls
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/__init__-debug", [ "all/app/1.0.1/controls/submit-debug", "all/app/1.0.1/controls/checkbox-debug", "all/app/1.0.1/controls/confirm-debug", "all/app/1.0.1/controls/jump-debug", "all/app/1.0.1/controls/link-debug", "all/app/1.0.1/controls/messenger-debug", "all/app/1.0.1/controls/money-debug", "all/app/1.0.1/controls/required-debug", "all/app/1.0.1/controls/number-debug", "all/app/1.0.1/controls/pagination-debug", "all/app/1.0.1/controls/roles-debug", "all/app/1.0.1/controls/trim-debug", "all/app/1.0.1/controls/validity-debug", "all/app/1.0.1/controls/dialog-debug", "all/app/1.0.1/controls/async-debug" ], function(require, exports, module) {
     function applyAll() {
         require("all/app/1.0.1/controls/submit-debug");
@@ -49,8 +67,14 @@ define("all/app/1.0.1/controls/__init__-debug", [ "all/app/1.0.1/controls/submit
     applyAll();
 });
 
-/**
- * 控制重复提交
+/*!
+ * submit.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
  */
 define("all/app/1.0.1/controls/submit-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
@@ -66,6 +90,15 @@ define("all/app/1.0.1/controls/submit-debug", [], function(require, exports, mod
     });
 });
 
+/*!
+ * checkbox.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/checkbox-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
@@ -103,6 +136,15 @@ define("all/app/1.0.1/controls/checkbox-debug", [], function(require, exports, m
     applyAll();
 });
 
+/*!
+ * cinfirm.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/confirm-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     function onclick(e) {
@@ -132,9 +174,14 @@ define("all/app/1.0.1/controls/confirm-debug", [], function(require, exports, mo
     };
 });
 
-/**
- * Version 1.2.3 Copyright (C) 2013
+/*!
+ * jump.js
  * Tested in IE 10, Chrome 27
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
  *
  * Example:
  *  <div data-target="${successBackUrl}"
@@ -142,6 +189,7 @@ define("all/app/1.0.1/controls/confirm-debug", [], function(require, exports, mo
  *       role="jump" >
  *       3秒后 ... 当前还剩<span class="num" />秒
  *  </div>
+ *
  */
 define("all/app/1.0.1/controls/jump-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
@@ -179,6 +227,15 @@ define("all/app/1.0.1/controls/jump-debug", [], function(require, exports, modul
     };
 });
 
+/*!
+ * link.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/link-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     function init(selector) {
@@ -199,6 +256,15 @@ define("all/app/1.0.1/controls/link-debug", [], function(require, exports, modul
     module.exports = init;
 });
 
+/*!
+ * messenger.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/messenger-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     function config() {
@@ -247,6 +313,15 @@ define("all/app/1.0.1/controls/messenger-debug", [], function(require, exports, 
     };
 });
 
+/*!
+ * nomey.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/money-debug", [ "all/app/1.0.1/controls/required-debug" ], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
@@ -308,6 +383,15 @@ define("all/app/1.0.1/controls/money-debug", [ "all/app/1.0.1/controls/required-
     };
 });
 
+/*!
+ * required.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/required-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
@@ -348,6 +432,15 @@ define("all/app/1.0.1/controls/required-debug", [], function(require, exports, m
     };
 });
 
+/*!
+ * number.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/number-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
@@ -369,6 +462,15 @@ define("all/app/1.0.1/controls/number-debug", [], function(require, exports, mod
     };
 });
 
+/*!
+ * pagination.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/pagination-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
@@ -432,6 +534,15 @@ define("all/app/1.0.1/controls/pagination-debug", [], function(require, exports,
     };
 });
 
+/*!
+ * roles.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/roles-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
@@ -548,6 +659,15 @@ define("all/app/1.0.1/controls/roles-debug", [], function(require, exports, modu
     };
 });
 
+/*!
+ * tirm.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/trim-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     function onblur() {
@@ -569,6 +689,15 @@ define("all/app/1.0.1/controls/trim-debug", [], function(require, exports, modul
     };
 });
 
+/*!
+ * vaildity.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/validity-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     var $doc = $(document);
@@ -592,6 +721,15 @@ define("all/app/1.0.1/controls/validity-debug", [], function(require, exports, m
     };
 });
 
+/*!
+ * dialog.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/dialog-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     function init(selector) {
@@ -613,6 +751,15 @@ define("all/app/1.0.1/controls/dialog-debug", [], function(require, exports, mod
     };
 });
 
+/*!
+ * async.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define("all/app/1.0.1/controls/async-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
     function init(tagName) {

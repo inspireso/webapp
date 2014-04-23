@@ -1,5 +1,11 @@
-/**
- * 控制重复提交
+/*!
+ * submit.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
  */
 define(function(require, exports, module) {
 

@@ -1,3 +1,12 @@
+/*!
+ * app.parpare.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 (function($) {
     String.prototype.format = function(tokens) {
         var formatted = this;

@@ -1,4 +1,13 @@
-﻿(function() {
+﻿/*
+ * js.extend.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
+(function() {
     Array.prototype.indexOf = function(obj) {
         var result = -1,
             length = this.length,

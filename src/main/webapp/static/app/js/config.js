@@ -1,3 +1,12 @@
+/*!
+ * config.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 (function() {
 
     seajs.config({

@@ -1,8 +1,17 @@
+/*!
+ * nomey.js
+ *
+ * https://github.com/inspireso
+ *
+ * Copyright 2014 Inspireso and/or its affiliates.
+ * Licensed under the Apache 2.0 License.
+ *
+ */
 define(function(require, exports, module) {
 
     var $ = window.jQuery;
     var $doc = $(document);
-    var number = require('./required');
+    var number = require('./number');
 
     function onblur() {
         this.value = format(this.value);
