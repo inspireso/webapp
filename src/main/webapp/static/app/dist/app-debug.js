@@ -59,10 +59,7 @@ define("all/app/1.0.1/controls/__init__-debug", [ "all/app/1.0.1/controls/submit
         require("all/app/1.0.1/controls/trim-debug");
         require("all/app/1.0.1/controls/validity-debug");
         require("all/app/1.0.1/controls/dialog-debug");
-        //调试的时候异步加载页面上<require>标签指定的脚本，生产环境统一压缩到同一个文件使用。
-        if (insp.debug) {
-            require("all/app/1.0.1/controls/async-debug");
-        }
+        require("all/app/1.0.1/controls/async-debug");
     }
     applyAll();
 });
