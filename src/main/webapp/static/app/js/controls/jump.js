@@ -19,7 +19,6 @@
 define(function(require, exports, module) {
 
     var $ = window.jQuery;
-    var $doc = $(document);
 
     function jump($jump, count) {
         window.setTimeout(function() {

@@ -10,6 +10,10 @@
 
 define(function(require, exports, module) {
 
+    if(!window.$doc){
+        window.$doc = $(document);
+     }
+
     function applyAll() {
         require('./submit');
         require('./checkbox');

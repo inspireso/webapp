@@ -31,7 +31,7 @@ define(function(require, exports, module) {
 
     function applyAll() {
         init('require');
-        $(document).bind('ajaxSuccess', function(e) {
+        $doc.bind('ajaxSuccess', function(e) {
             init('require');
         });
     };

@@ -10,7 +10,6 @@
 define(function(require, exports, module) {
 
     var $ = window.jQuery;
-    var $doc = $(document);
 
     function format(formatted, tokens) {
         for (var token in tokens)

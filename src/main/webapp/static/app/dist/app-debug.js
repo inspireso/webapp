@@ -43,6 +43,9 @@ define("all/app/1.0.1/app-debug", [ "./controls/__init__-debug", "./controls/sub
  *
  */
 define("all/app/1.0.1/controls/__init__-debug", [ "all/app/1.0.1/controls/submit-debug", "all/app/1.0.1/controls/checkbox-debug", "all/app/1.0.1/controls/confirm-debug", "all/app/1.0.1/controls/jump-debug", "all/app/1.0.1/controls/link-debug", "all/app/1.0.1/controls/messenger-debug", "all/app/1.0.1/controls/money-debug", "all/app/1.0.1/controls/number-debug", "all/app/1.0.1/controls/pagination-debug", "all/app/1.0.1/controls/required-debug", "all/app/1.0.1/controls/roles-debug", "all/app/1.0.1/controls/trim-debug", "all/app/1.0.1/controls/validity-debug", "all/app/1.0.1/controls/dialog-debug", "all/app/1.0.1/controls/async-debug" ], function(require, exports, module) {
+    if (!window.$doc) {
+        window.$doc = $(document);
+    }
     function applyAll() {
         require("all/app/1.0.1/controls/submit-debug");
         require("all/app/1.0.1/controls/checkbox-debug");
@@ -98,7 +101,6 @@ define("all/app/1.0.1/controls/submit-debug", [], function(require, exports, mod
  */
 define("all/app/1.0.1/controls/checkbox-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     function applyTableSelected(selector) {
         $doc.on("change", selector, function(event) {
             var $this = $(this);
@@ -160,7 +162,7 @@ define("all/app/1.0.1/controls/confirm-debug", [], function(require, exports, mo
     }
     function applyAll() {
         init("span[role=confirm]");
-        $(document).bind("ajaxSuccess", function(e) {
+        $doc.bind("ajaxSuccess", function(e) {
             init("span[role=confirm]");
         });
     }
@@ -190,7 +192,6 @@ define("all/app/1.0.1/controls/confirm-debug", [], function(require, exports, mo
  */
 define("all/app/1.0.1/controls/jump-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     function jump($jump, count) {
         window.setTimeout(function() {
             count = count - 1;
@@ -245,7 +246,7 @@ define("all/app/1.0.1/controls/link-debug", [], function(require, exports, modul
         });
     }
     function applyAll() {
-        $(document).bind("ajaxSuccess", function(e) {
+        $doc.bind("ajaxSuccess", function(e) {
             init("[role=button]");
         });
     }
@@ -321,7 +322,6 @@ define("all/app/1.0.1/controls/messenger-debug", [], function(require, exports, 
  */
 define("all/app/1.0.1/controls/money-debug", [ "all/app/1.0.1/controls/number-debug" ], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     var number = require("all/app/1.0.1/controls/number-debug");
     function onblur() {
         this.value = format(this.value);
@@ -391,7 +391,6 @@ define("all/app/1.0.1/controls/money-debug", [ "all/app/1.0.1/controls/number-de
  */
 define("all/app/1.0.1/controls/number-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     function onkeydown() {
         if (event.keyCode == 37 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 39 || event.keyCode == 46 || event.keyCode == 190 || event.keyCode == 110 || event.keyCode >= 48 && event.keyCode <= 57 || event.keyCode >= 96 && event.keyCode <= 105) {} else {
             return false;
@@ -421,7 +420,6 @@ define("all/app/1.0.1/controls/number-debug", [], function(require, exports, mod
  */
 define("all/app/1.0.1/controls/pagination-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     function format(formatted, tokens) {
         for (var token in tokens) if (tokens.hasOwnProperty(token)) formatted = formatted.replace(RegExp("{" + token + "}", "g"), tokens[token]);
         return formatted;
@@ -493,7 +491,6 @@ define("all/app/1.0.1/controls/pagination-debug", [], function(require, exports,
  */
 define("all/app/1.0.1/controls/required-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     var tipPlacement = "right";
     function onblur(e) {
         var $this = $(this);
@@ -542,7 +539,6 @@ define("all/app/1.0.1/controls/required-debug", [], function(require, exports, m
  */
 define("all/app/1.0.1/controls/roles-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     var tipPlacement = "right";
     var validators = {
         number: {
@@ -697,7 +693,6 @@ define("all/app/1.0.1/controls/trim-debug", [], function(require, exports, modul
  */
 define("all/app/1.0.1/controls/validity-debug", [], function(require, exports, module) {
     var $ = window.jQuery;
-    var $doc = $(document);
     function init(selector) {
         $(selector).each(function() {
             if (this.setCustomValidity) {
@@ -737,7 +732,7 @@ define("all/app/1.0.1/controls/dialog-debug", [], function(require, exports, mod
     }
     function applyAll() {
         init("div[role=dialog]");
-        $(document).bind("ajaxSuccess", function(e) {
+        $doc.bind("ajaxSuccess", function(e) {
             init("div[role=dialog]");
         });
     }
@@ -776,7 +771,7 @@ define("all/app/1.0.1/controls/async-debug", [], function(require, exports, modu
     }
     function applyAll() {
         init("require");
-        $(document).bind("ajaxSuccess", function(e) {
+        $doc.bind("ajaxSuccess", function(e) {
             init("require");
         });
     }

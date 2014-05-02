@@ -10,7 +10,6 @@
 define(function(require, exports, module) {
 
     var $ = window.jQuery;
-    var $doc = $(document);
 
     function init(selector) {
         $(selector).each(function() {

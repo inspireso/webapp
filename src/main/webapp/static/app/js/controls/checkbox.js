@@ -11,8 +11,6 @@ define(function(require, exports, module) {
 
     var $ = window.jQuery;
 
-    var $doc = $(document);
-
     function applyTableSelected(selector) {
         $doc.on('change', selector, function(event) {
             var $this = $(this);

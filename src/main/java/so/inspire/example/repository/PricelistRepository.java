@@ -21,4 +21,5 @@ public interface PricelistRepository extends BusinessRepository<Pricelist> {
 
     List<Pricelist> findByProductCode(String code);
 
+
 }

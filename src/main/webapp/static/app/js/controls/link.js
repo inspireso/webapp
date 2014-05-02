@@ -22,7 +22,7 @@ define(function(require, exports, module) {
     }
 
     function applyAll() {
-        $(document).bind("ajaxSuccess", function(e) {
+        $doc.bind("ajaxSuccess", function(e) {
             init("[role=button]");
         });
     }

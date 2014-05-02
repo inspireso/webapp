@@ -34,7 +34,7 @@ define(function(require, exports, module) {
 
     function applyAll() {
         init("span[role=confirm]");
-        $(document).bind("ajaxSuccess", function(e) {
+        $doc.bind("ajaxSuccess", function(e) {
             init("span[role=confirm]");
         });
     };

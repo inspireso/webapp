@@ -36,7 +36,7 @@ define(function(require, exports, module) {
 
     }
 
-    $(document).bind("ajaxSuccess", function(e) {
+    $doc.bind("ajaxSuccess", function(e) {
         init("input[role=datetime]:visible");
     });
 
