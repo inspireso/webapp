@@ -27,4 +27,4 @@ release.properties
 
 #Ignore file build by IDEA
 .idea/
-.iml
+*.iml
